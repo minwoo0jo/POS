@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<statements>
+  <statement name="getMasterItems">
+    select  com_cd                 ,
+            item_type              ,
+            item_cd                ,
+            substr(item_cd,1,2) prod_group,
+            parent_cd              ,
+            short_name             ,
+            full_name              ,
+            tax_flag               ,
+            price                  ,
+            dz_amt                 ,
+            web_flag               ,
+            delete_flag            ,
+            input_id               ,
+            input_dt               ,
+            modify_id              ,
+            modify_dt              ,
+            sort_order
+    from    tm_item
+    where   item_type       = 'M'
+    and     delete_flag     = 'N'
+    order by item_cd, short_name, full_name
+  </statement>
+
+  <statement name="getDetailItems">
+    select  com_cd                          ,
+		        item_type                       ,
+            item_cd                         ,
+            parent_cd                       ,
+            short_name                      ,
+            full_name                       ,
+            tax_flag                        ,
+            price                           ,
+            case
+            When coalesce(dz_amt, 0) = 0 Then
+            price * 12
+            Else
+            dz_amt
+            End as             dz_amt      ,
+            case
+            When nvl(cast(price as numeric), 0) = 0 Then
+            1
+            When nvl(cast(dz_amt as numeric), 0) = 0 Then
+            1
+            Else
+            dz_amt / (price * 12)
+            End                dc_ratio    ,
+            web_flag                        ,
+            delete_flag                     ,
+            input_id                        ,
+            input_dt                        ,
+            modify_id                       ,
+            modify_dt                       ,
+            sort_order
+    from    tm_item
+    where   item_type           = 'S'
+    and     delete_flag         = 'N'
+    --and     parent_cd           = :parent_cd
+  </statement>
+
+  <statement name="getCodeInfo">
+    select auto_print, tax_ratio
+    from   (select code_value1 auto_print
+    from   tm_code
+    where  class = 'C03') a,
+    (select code_num1 tax_ratio
+    from   tm_code
+    where  class = 'C04') b
+  </statement>
+
+</statements>

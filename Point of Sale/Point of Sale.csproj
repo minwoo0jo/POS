@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{591C2FE5-641E-4E40-9B16-6BF41FA9286C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Point_of_Sale</RootNamespace>
+    <AssemblyName>Point of Sale</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>rows.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Npgsql, Version=4.0.10.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.4.0.10\lib\net451\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard1.1\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard1.1\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Order.cs" />
+    <Compile Include="Resources\SerialPortController.cs" />
+    <Compile Include="Resources\GetMasterInfo.cs" />
+    <Compile Include="Resources\GlobalVar.cs" />
+    <Compile Include="Resources\SetKeyEvents.cs" />
+    <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="type.wav" />
+    <None Include="Resources\Image1.jpg" />
+    <Content Include="exit.png" />
+    <EmbeddedResource Include="queries.xml" />
+    <None Include="Properties\type.wav" />
+    <None Include="image\00.jpg" />
+    <None Include="image\0.jpg" />
+    <None Include="image\1.jpg" />
+    <None Include="image\2.jpg" />
+    <None Include="image\3.jpg" />
+    <None Include="image\4.jpg" />
+    <None Include="image\5.jpg" />
+    <None Include="image\6.jpg" />
+    <None Include="image\7.jpg" />
+    <None Include="image\8.jpg" />
+    <None Include="image\9.jpg" />
+    <None Include="image\12.jpg" />
+    <None Include="image\24.jpg" />
+    <None Include="image\36.jpg" />
+    <None Include="image\48.jpg" />
+    <None Include="image\background.jpg" />
+    <None Include="image\blank.jpg" />
+    <None Include="image\bs.jpg" />
+    <None Include="image\button.jpg" />
+    <None Include="image\button1.jpg" />
+    <None Include="image\card.jpg" />
+    <None Include="image\cash.jpg" />
+    <None Include="image\cls.jpg" />
+    <None Include="image\disc.jpg" />
+    <None Include="image\donuts.jpg" />
+    <None Include="image\dot.jpg" />
+    <None Include="image\dot1.jpg" />
+    <None Include="image\EnterKey.jpg" />
+    <None Include="image\larrow.jpg" />
+    <None Include="image\M001.jpg" />
+    <None Include="image\M002.jpg" />
+    <None Include="image\M003.jpg" />
+    <None Include="image\M004.jpg" />
+    <None Include="image\M005.jpg" />
+    <None Include="image\M006.jpg" />
+    <None Include="image\M021.jpg" />
+    <None Include="image\M201.jpg" />
+    <None Include="image\M202.jpg" />
+    <None Include="image\M203.jpg" />
+    <None Include="image\M204.jpg" />
+    <None Include="image\M401.jpg" />
+    <None Include="image\M402.jpg" />
+    <None Include="image\M403.jpg" />
+    <None Include="image\M404.jpg" />
+    <None Include="image\M405.jpg" />
+    <None Include="image\M406.jpg" />
+    <None Include="image\M407.jpg" />
+    <None Include="image\M408.jpg" />
+    <None Include="image\M999.jpg" />
+    <None Include="image\rarrow.jpg" />
+    <None Include="image\S001.jpg" />
+    <None Include="image\S002.jpg" />
+    <None Include="image\S003.jpg" />
+    <None Include="image\S004.jpg" />
+    <None Include="image\S005.jpg" />
+    <None Include="image\S006.jpg" />
+    <None Include="image\S007.jpg" />
+    <None Include="image\S008.jpg" />
+    <None Include="image\S009.jpg" />
+    <None Include="image\S010.jpg" />
+    <None Include="image\S011.jpg" />
+    <None Include="image\S012.jpg" />
+    <None Include="image\S013.jpg" />
+    <None Include="image\S014.jpg" />
+    <None Include="image\S015.jpg" />
+    <None Include="image\S016.jpg" />
+    <None Include="image\S017.jpg" />
+    <None Include="image\S018.jpg" />
+    <None Include="image\S021.jpg" />
+    <None Include="image\S022.jpg" />
+    <None Include="image\S023.jpg" />
+    <None Include="image\S024.jpg" />
+    <None Include="image\S025.jpg" />
+    <None Include="image\S026.jpg" />
+    <None Include="image\S027.jpg" />
+    <None Include="image\S028.jpg" />
+    <None Include="image\S029.jpg" />
+    <None Include="image\S030.jpg" />
+    <None Include="image\S031.jpg" />
+    <None Include="image\S032.jpg" />
+    <None Include="image\S033.jpg" />
+    <None Include="image\S034.jpg" />
+    <None Include="image\S035.jpg" />
+    <None Include="image\S036.jpg" />
+    <None Include="image\S037.jpg" />
+    <None Include="image\S038.jpg" />
+    <None Include="image\S039.jpg" />
+    <None Include="image\S040.jpg" />
+    <None Include="image\S041.jpg" />
+    <None Include="image\S042.jpg" />
+    <None Include="image\S043.jpg" />
+    <None Include="image\S044.jpg" />
+    <None Include="image\S045.jpg" />
+    <None Include="image\S046.jpg" />
+    <None Include="image\S047.jpg" />
+    <None Include="image\S048.jpg" />
+    <None Include="image\S049.jpg" />
+    <None Include="image\S050.jpg" />
+    <None Include="image\S051.jpg" />
+    <None Include="image\S052.jpg" />
+    <None Include="image\S053.jpg" />
+    <None Include="image\S054.jpg" />
+    <None Include="image\S055.jpg" />
+    <None Include="image\S056.jpg" />
+    <None Include="image\S057.jpg" />
+    <None Include="image\S058.jpg" />
+    <None Include="image\S060.jpg" />
+    <None Include="image\S061.jpg" />
+    <None Include="image\S062.jpg" />
+    <None Include="image\S063.jpg" />
+    <None Include="image\S064.jpg" />
+    <None Include="image\S065.jpg" />
+    <None Include="image\S066.jpg" />
+    <None Include="image\S067.jpg" />
+    <None Include="image\S068.jpg" />
+    <None Include="image\S069.jpg" />
+    <None Include="image\S070.jpg" />
+    <None Include="image\S071.jpg" />
+    <None Include="image\S072.jpg" />
+    <None Include="image\S073.jpg" />
+    <None Include="image\S074.jpg" />
+    <None Include="image\S075.jpg" />
+    <None Include="image\S076.jpg" />
+    <None Include="image\S077.jpg" />
+    <None Include="image\S078.jpg" />
+    <None Include="image\S079.jpg" />
+    <None Include="image\S080.jpg" />
+    <None Include="image\S081.jpg" />
+    <None Include="image\S082.jpg" />
+    <None Include="image\S083.jpg" />
+    <None Include="image\S084.jpg" />
+    <None Include="image\S085.jpg" />
+    <None Include="image\S086.jpg" />
+    <None Include="image\S087.jpg" />
+    <None Include="image\S088.jpg" />
+    <None Include="image\S089.jpg" />
+    <None Include="image\S090.jpg" />
+    <None Include="image\S091.jpg" />
+    <None Include="image\S092.jpg" />
+    <None Include="image\S093.jpg" />
+    <None Include="image\S094.jpg" />
+    <None Include="image\S095.jpg" />
+    <None Include="image\S096.jpg" />
+    <None Include="image\S097.jpg" />
+    <None Include="image\S098.jpg" />
+    <None Include="image\S099.jpg" />
+    <None Include="image\S100.jpg" />
+    <None Include="image\S101.jpg" />
+    <None Include="image\S102.jpg" />
+    <None Include="image\S103.jpg" />
+    <None Include="image\S104.jpg" />
+    <None Include="image\S105.jpg" />
+    <None Include="image\S106.jpg" />
+    <None Include="image\S107.jpg" />
+    <None Include="image\S108.jpg" />
+    <None Include="image\S109.jpg" />
+    <None Include="image\S110.jpg" />
+    <None Include="image\S998.jpg" />
+    <None Include="image\S999.jpg" />
+    <None Include="Resources\button28.BackgroundImage.bmp" />
+    <None Include="Resources\larrow.jpg" />
+    <None Include="Resources\rarrow.jpg" />
+    <Content Include="rows.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
