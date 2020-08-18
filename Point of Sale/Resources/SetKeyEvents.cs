@@ -197,14 +197,7 @@ namespace Point_of_Sale.Resources
                     frm.dispSum();
                 }
                 GlobalVar.FOCUS_ITEM = null;
-                frm.txItemName.Text = "";
-                frm.txQty.Text = "";
-                frm.txPrice.Text = "";
-                frm.txTax.Text = "";
-                frm.txTaxTtl.Text = "";
-                frm.txDc.Text = "";
-                frm.txDcTtl.Text = "";
-                frm.txItemTtl.Text = "";
+                frm.clearScreen(false);
             }
             //If there is no focus item, then initiate payment instead of adding to the order.
             else if(GlobalVar.FOCUS_ITEM == null && !(frm.txReceived.Text.Equals("") || frm.txReceived.Text.Equals("0")))
@@ -240,14 +233,7 @@ namespace Point_of_Sale.Resources
             DataGridViewRow row = frm.orderList.SelectedRows[0];
             frm.orderList.Rows.Remove(row);
             frm.dispSum();
-            frm.txItemName.Text = "";
-            frm.txQty.Text = "";
-            frm.txPrice.Text = "";
-            frm.txTax.Text = "";
-            frm.txTaxTtl.Text = "";
-            frm.txDc.Text = "";
-            frm.txDcTtl.Text = "";
-            frm.txItemTtl.Text = "";
+            frm.clearScreen(false);
         }
 
         //Event when the delete all button is clicked.
@@ -261,14 +247,7 @@ namespace Point_of_Sale.Resources
                 return;
             frm.orderList.Rows.Clear();
             frm.dispSum();
-            frm.txItemName.Text = "";
-            frm.txQty.Text = "";
-            frm.txPrice.Text = "";
-            frm.txTax.Text = "";
-            frm.txTaxTtl.Text = "";
-            frm.txDc.Text = "";
-            frm.txDcTtl.Text = "";
-            frm.txItemTtl.Text = "";
+            frm.clearScreen(false);
         }
     }
 

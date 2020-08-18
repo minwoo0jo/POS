@@ -154,7 +154,6 @@ namespace Point_of_Sale
         public void dispSum()
         {
             decimal[] sum = new decimal[3];
-
             for (int i = 0; i < orderList.Rows.Count; i++)
             {
                 sum[0] += Convert.ToDecimal(orderList.Rows[i].Cells["qty"].Value);
@@ -164,7 +163,6 @@ namespace Point_of_Sale
             btnSumCnt.Text = (orderList.Rows.Count).ToString() + " / " + (sum[0]).ToString();
             btnSumAmt.Text = String.Format("{0:0.00}", sum[1]);
             GlobalVar.CURRENT_ORDER.total = (double)sum[1];
-
             //If an item was added after payment was already received, automatically update the change amount.
             //Change amount can be negative if the payment from customer is insufficient.
             if (GlobalVar.CURRENT_ORDER.paymentType.Equals("N"))
@@ -184,16 +182,15 @@ namespace Point_of_Sale
                 GlobalVar.CURRENT_ORDER.amountPaid = (double)sum[1];
             }
             GlobalVar.CURRENT_ORDER.total = (double)sum[1];
-
             //If there are no items in the order yet, display a welcome message instead of the total.
-            if((double)sum[1] < 0.01)
+            if ((double)sum[1] < 0.01)
                 GlobalVar.SP_CONTROLLER.displayText("Welcome to Four Seasons Donuts!");
             //If there are items in the order, display the total cost on the left side and the amount discounted in the right side.
             else
             {
                 String display = "Total      Discount " + sum[1].ToString();
                 //Pad the middle of the second row with spaces so the total is on the left and the discount is on the right.
-                for(int i = sum[1].ToString().Length; i < 19 - sum[2].ToString().Length; i++)
+                for (int i = sum[1].ToString().Length; i < 19 - sum[2].ToString().Length; i++)
                 {
                     display += " ";
                 }
@@ -272,7 +269,7 @@ namespace Point_of_Sale
             orderList.SelectionChanged -= this.btn_OrderListClick;
             GetMasterInfo mst = new GetMasterInfo();
             GlobalVar.CURRENT_ORDER = mst.RetrieveOrder(GlobalVar.CURRENT_ORDER.now, this.orderList, true);
-            orderList.Rows.Clear();
+            clearScreen(true);
             orderList = copyToOrderList(GlobalVar.CURRENT_ORDER.orderList, orderList);
             orderList.SelectionChanged += this.btn_OrderListClick;
         }
@@ -287,7 +284,7 @@ namespace Point_of_Sale
             orderList.SelectionChanged -= this.btn_OrderListClick;
             GetMasterInfo mst = new GetMasterInfo();
             GlobalVar.CURRENT_ORDER = mst.RetrieveOrder(GlobalVar.CURRENT_ORDER.now, this.orderList, false);
-            orderList.Rows.Clear();
+            clearScreen(true);
             orderList = copyToOrderList(GlobalVar.CURRENT_ORDER.orderList, orderList);
             orderList.SelectionChanged += this.btn_OrderListClick;
         }
@@ -359,18 +356,7 @@ namespace Point_of_Sale
             GlobalVar.CURRENT_ORDER = new Order();
             Image newPaymentType = new Bitmap(@"..\..\Resources\Cash.jpg");
             btnPayment.BackgroundImage = newPaymentType;
-            orderList.Rows.Clear();
-            dispSum();
-            txPrice.Text = "";
-            txQty.Text = "";
-            txTax.Text = "";
-            txTaxTtl.Text = "";
-            txDc.Text = "";
-            txDcTtl.Text = "";
-            txItemName.Text = "";
-            txItemTtl.Text = "";
-            txReceived.Text = "";
-            txChange.Text = "";
+            clearScreen(true);
 
         }
 
@@ -395,6 +381,11 @@ namespace Point_of_Sale
         //Handler for when the delete row button is clicked.
         private void btn_DeleteRow(object sender, EventArgs e)
         {
+            if (!GlobalVar.CURRENT_ORDER.editable)
+            {
+                MessageBox.Show("This order is already complete and cannot be edited.", "Error: Deleting item from saved order");
+                return;
+            }
             //Since there could be a selected row in the orderlist, the handler for the orderlist is disabled for this method.
             orderList.SelectionChanged -= btn_OrderListClick;
             SetKeyEvents sk = GlobalVar.EVENTS;
@@ -405,6 +396,11 @@ namespace Point_of_Sale
         //Handler for when the delete all button is clicked.
         private void btn_DeleteAll(object sender, EventArgs e)
         {
+            if (!GlobalVar.CURRENT_ORDER.editable)
+            {
+                MessageBox.Show("This order is already complete and cannot be edited.", "Error: Deleting item from saved order");
+                return;
+            }
             //Since there could be a selected row in the orderlist, the handler for the orderlist is disabled for this method.
             orderList.SelectionChanged -= btn_OrderListClick;
             SetKeyEvents sk = GlobalVar.EVENTS;
@@ -455,11 +451,10 @@ namespace Point_of_Sale
             txDc.Text = "";
             txDcTtl.Text = "";
             txItemTtl.Text = "";
-            if(full)
+            if (full)
             {
                 orderList.Rows.Clear();
-                btnSumAmt.Text = "0.00";
-                btnSumCnt.Text = "0 / 0";
+//                dispSum();
                 txReceived.Text = "";
                 txChange.Text = "";
             }
